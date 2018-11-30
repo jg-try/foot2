@@ -40,6 +40,19 @@ public class CacheConfiguration {
             cm.createCache(com.everteam.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.everteam.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.everteam.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Player.class.getName(), jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Player.class.getName() + ".votes", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Player.class.getName() + ".teamS", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Player.class.getName() + ".teamCS", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Match.class.getName(), jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Match.class.getName() + ".votes", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Stadium.class.getName(), jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Stadium.class.getName() + ".matches", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.TeamC.class.getName(), jcacheConfiguration);
+            cm.createCache(com.everteam.domain.TeamC.class.getName() + ".playerCS", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.TeamS.class.getName(), jcacheConfiguration);
+            cm.createCache(com.everteam.domain.TeamS.class.getName() + ".playerS", jcacheConfiguration);
+            cm.createCache(com.everteam.domain.Vote.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

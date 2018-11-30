@@ -1,0 +1,66 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="footApp.vote.home.title">Votes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vote" [routerLink]="['/vote/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="footApp.vote.home.createLabel">
+            Create new Vote
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="votes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="note"><span jhiTranslate="footApp.vote.note">Note</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="match.date"><span jhiTranslate="footApp.vote.match">Match</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="voter.name"><span jhiTranslate="footApp.vote.voter">Voter</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let vote of votes ;trackBy: trackId">
+                <td><a [routerLink]="['/vote', vote.id, 'view' ]">{{vote.id}}</a></td>
+                <td>{{vote.note}}</td>
+                <td>
+                    <div *ngIf="vote.match">
+                        <a [routerLink]="['../match', vote.match?.id, 'view' ]" >{{vote.match?.date}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vote.voter">
+                        <a [routerLink]="['../player', vote.voter?.id, 'view' ]" >{{vote.voter?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/vote', vote.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/vote', vote.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'vote/'+ vote.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

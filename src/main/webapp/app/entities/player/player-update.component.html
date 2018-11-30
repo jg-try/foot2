@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-player-heading" jhiTranslate="footApp.player.home.createOrEditLabel">Create or edit a Player</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!player.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="player.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.player.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="player.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.player.avatar" for="field_avatar">Avatar</label>
+                    <div>
+                        <img [src]="'data:' + player.avatarContentType + ';base64,' + player.avatar" style="max-height: 100px;" *ngIf="player.avatar" alt="player image"/>
+                        <div *ngIf="player.avatar" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{player.avatarContentType}}, {{byteSize(player.avatar)}}</span>
+                            <button type="button" (click)="clearInputImage('avatar', 'avatarContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_avatar" (change)="setFileData($event, player, 'avatar', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="avatar" id="field_avatar"
+                        [(ngModel)]="player.avatar" />
+                    <input type="hidden" class="form-control" name="avatarContentType" id="field_avatarContentType"
+                        [(ngModel)]="player.avatarContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.player.win" for="field_win">Win</label>
+                    <input type="number" class="form-control" name="win" id="field_win"
+                        [(ngModel)]="player.win" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.player.lose" for="field_lose">Lose</label>
+                    <input type="number" class="form-control" name="lose" id="field_lose"
+                        [(ngModel)]="player.lose" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.player.draw" for="field_draw">Draw</label>
+                    <input type="number" class="form-control" name="draw" id="field_draw"
+                        [(ngModel)]="player.draw" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.player.mvp" for="field_mvp">Mvp</label>
+                    <input type="number" class="form-control" name="mvp" id="field_mvp"
+                        [(ngModel)]="player.mvp" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="teamC">
+            <h2><span jhiTranslate="footApp.teamC.detail.title">Team C</span> {{teamC.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="footApp.teamC.name">Name</span></dt>
+                <dd>
+                    <span>{{teamC.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="footApp.teamC.playerC">Player C</span></dt>
+                <dd>
+                    <span *ngFor="let playerC of teamC.playerCS; let last = last">
+                        <a [routerLink]="['/player', playerC?.id, 'view' ]">{{playerC.name}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/team-c', teamC.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

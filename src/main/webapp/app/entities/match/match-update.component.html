@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-match-heading" jhiTranslate="footApp.match.home.createOrEditLabel">Create or edit a Match</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!match.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="match.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.date" for="field_date">Date</label>
+                    <div class="input-group">
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" [(ngModel)]="match.date"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.scoreC" for="field_scoreC">Score C</label>
+                    <input type="number" class="form-control" name="scoreC" id="field_scoreC"
+                        [(ngModel)]="match.scoreC" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.scoreS" for="field_scoreS">Score S</label>
+                    <input type="number" class="form-control" name="scoreS" id="field_scoreS"
+                        [(ngModel)]="match.scoreS" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.teamC" for="field_teamC">Team C</label>
+                    <select class="form-control" id="field_teamC" name="teamC" [(ngModel)]="match.teamC">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="teamCOption.id === match.teamC?.id ? match.teamC : teamCOption" *ngFor="let teamCOption of teamcs; trackBy: trackTeamCById">{{teamCOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.teamS" for="field_teamS">Team S</label>
+                    <select class="form-control" id="field_teamS" name="teamS" [(ngModel)]="match.teamS">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="teamSOption.id === match.teamS?.id ? match.teamS : teamSOption" *ngFor="let teamSOption of teams; trackBy: trackTeamSById">{{teamSOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.stadium" for="field_stadium">Stadium</label>
+                    <select class="form-control" id="field_stadium" name="stadium" [(ngModel)]="match.stadium" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="stadiumOption.id === match.stadium?.id ? match.stadium : stadiumOption" *ngFor="let stadiumOption of stadiums; trackBy: trackStadiumById">{{stadiumOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.mvpC" for="field_mvpC">Mvp C</label>
+                    <select class="form-control" id="field_mvpC" name="mvpC" [(ngModel)]="match.mvpC" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="playerOption.id === match.mvpC?.id ? match.mvpC : playerOption" *ngFor="let playerOption of players; trackBy: trackPlayerById">{{playerOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="footApp.match.mvpS" for="field_mvpS">Mvp S</label>
+                    <select class="form-control" id="field_mvpS" name="mvpS" [(ngModel)]="match.mvpS" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="playerOption.id === match.mvpS?.id ? match.mvpS : playerOption" *ngFor="let playerOption of players; trackBy: trackPlayerById">{{playerOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

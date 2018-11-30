@@ -1,0 +1,66 @@
+
+entity Player {
+	name String,
+    avatar ImageBlob,
+	win Integer,
+	lose Integer,
+    draw Integer,
+    mvp Integer
+}
+
+entity Match {
+	date LocalDate,
+	scoreC Integer,
+    scoreS Integer
+}
+
+entity Stadium {
+	name String
+}
+
+entity TeamC {
+	name String
+}
+
+entity TeamS {
+	name String
+}
+
+entity Vote {
+	note String
+}
+
+relationship ManyToOne {
+	Match{stadium(name)} to Stadium{match}
+}
+
+relationship ManyToOne {
+    Vote{match(date)} to Match{vote},
+    Vote{voter(name)} to Player{vote}
+}
+
+relationship ManyToOne {
+    Match{mvpC(name)} to Player,
+    Match{mvpS(name)} to Player
+}
+
+relationship OneToOne {
+	Match{teamC(name)} to TeamC{match}
+}
+
+relationship OneToOne {
+	Match{teamS(name)} to TeamS{match}
+}
+
+relationship ManyToMany {
+    TeamS{playerS(name)} to Player{teamS},
+    TeamC{playerC(name)} to Player{teamC}
+}
+
+
+// Set pagination options
+paginate all with infinite-scroll
+
+// Set service options to all except few
+service all with serviceImpl
+

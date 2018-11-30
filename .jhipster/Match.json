@@ -1,0 +1,68 @@
+{
+    "name": "Match",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "scoreC",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "scoreS",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "teamC",
+            "otherEntityName": "teamC",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "match"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "teamS",
+            "otherEntityName": "teamS",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "match"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "stadium",
+            "otherEntityName": "stadium",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "mvpC",
+            "otherEntityName": "player",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "mvpS",
+            "otherEntityName": "player",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "vote",
+            "otherEntityName": "vote",
+            "otherEntityRelationshipName": "match"
+        }
+    ],
+    "changelogDate": "20181130203118",
+    "entityTableName": "match",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

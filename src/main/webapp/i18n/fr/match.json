@@ -1,0 +1,29 @@
+{
+    "footApp": {
+        "match": {
+            "home": {
+                "title": "Matches",
+                "createLabel": "Créer un nouveau Match",
+                "createOrEditLabel": "Créer ou éditer un Match"
+            },
+            "created": "Un nouveau Match a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Match avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Match avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Match {{ id }} ?"
+            },
+            "detail": {
+                "title": "Match"
+            },
+            "date": "Date",
+            "scoreC": "Score C",
+            "scoreS": "Score S",
+            "teamC": "Team C",
+            "teamS": "Team S",
+            "stadium": "Stadium",
+            "mvpC": "Mvp C",
+            "mvpS": "Mvp S",
+            "vote": "Vote"
+        }
+    }
+}

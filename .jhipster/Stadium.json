@@ -1,0 +1,26 @@
+{
+    "name": "Stadium",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "match",
+            "otherEntityName": "match",
+            "otherEntityRelationshipName": "stadium"
+        }
+    ],
+    "changelogDate": "20181130203119",
+    "entityTableName": "stadium",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

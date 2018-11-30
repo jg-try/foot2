@@ -1,0 +1,61 @@
+{
+    "name": "Player",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "avatar",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "win",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lose",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "draw",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "mvp",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "vote",
+            "otherEntityName": "vote",
+            "otherEntityRelationshipName": "voter"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "teamS",
+            "otherEntityName": "teamS",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "playerS"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "teamC",
+            "otherEntityName": "teamC",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "playerC"
+        }
+    ],
+    "changelogDate": "20181130203117",
+    "entityTableName": "player",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

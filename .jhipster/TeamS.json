@@ -1,0 +1,35 @@
+{
+    "name": "TeamS",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "teamS",
+            "relationshipName": "playerS",
+            "otherEntityName": "player",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "match",
+            "otherEntityName": "match",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "teamS"
+        }
+    ],
+    "changelogDate": "20181130203121",
+    "entityTableName": "team_s",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

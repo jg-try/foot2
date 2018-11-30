@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="footApp.match.home.title">Matches</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-match" [routerLink]="['/match/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="footApp.match.home.createLabel">
+            Create new Match
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="matches">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="date"><span jhiTranslate="footApp.match.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="scoreC"><span jhiTranslate="footApp.match.scoreC">Score C</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="scoreS"><span jhiTranslate="footApp.match.scoreS">Score S</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="teamC.name"><span jhiTranslate="footApp.match.teamC">Team C</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="teamS.name"><span jhiTranslate="footApp.match.teamS">Team S</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="stadium.name"><span jhiTranslate="footApp.match.stadium">Stadium</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mvpC.name"><span jhiTranslate="footApp.match.mvpC">Mvp C</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mvpS.name"><span jhiTranslate="footApp.match.mvpS">Mvp S</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let match of matches ;trackBy: trackId">
+                <td><a [routerLink]="['/match', match.id, 'view' ]">{{match.id}}</a></td>
+                <td>{{match.date | date:'mediumDate'}}</td>
+                <td>{{match.scoreC}}</td>
+                <td>{{match.scoreS}}</td>
+                <td>
+                    <div *ngIf="match.teamC">
+                        <a [routerLink]="['../team-c', match.teamC?.id, 'view' ]" >{{match.teamC?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="match.teamS">
+                        <a [routerLink]="['../team-s', match.teamS?.id, 'view' ]" >{{match.teamS?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="match.stadium">
+                        <a [routerLink]="['../stadium', match.stadium?.id, 'view' ]" >{{match.stadium?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="match.mvpC">
+                        <a [routerLink]="['../player', match.mvpC?.id, 'view' ]" >{{match.mvpC?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="match.mvpS">
+                        <a [routerLink]="['../player', match.mvpS?.id, 'view' ]" >{{match.mvpS?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/match', match.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/match', match.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'match/'+ match.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

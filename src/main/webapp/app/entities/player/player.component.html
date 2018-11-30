@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="footApp.player.home.title">Players</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-player" [routerLink]="['/player/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="footApp.player.home.createLabel">
+            Create new Player
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="players">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="footApp.player.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="avatar"><span jhiTranslate="footApp.player.avatar">Avatar</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="win"><span jhiTranslate="footApp.player.win">Win</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lose"><span jhiTranslate="footApp.player.lose">Lose</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="draw"><span jhiTranslate="footApp.player.draw">Draw</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mvp"><span jhiTranslate="footApp.player.mvp">Mvp</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let player of players ;trackBy: trackId">
+                <td><a [routerLink]="['/player', player.id, 'view' ]">{{player.id}}</a></td>
+                <td>{{player.name}}</td>
+                <td>
+                    <a *ngIf="player.avatar" (click)="openFile(player.avatarContentType, player.avatar)">
+                        <img [src]="'data:' + player.avatarContentType + ';base64,' + player.avatar" style="max-height: 30px;" alt="player image"/>
+                    </a>
+                    <span *ngIf="player.avatar">{{player.avatarContentType}}, {{byteSize(player.avatar)}}</span>
+                </td>
+                <td>{{player.win}}</td>
+                <td>{{player.lose}}</td>
+                <td>{{player.draw}}</td>
+                <td>{{player.mvp}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/player', player.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/player', player.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'player/'+ player.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

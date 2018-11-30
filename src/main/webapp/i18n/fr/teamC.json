@@ -1,0 +1,23 @@
+{
+    "footApp": {
+        "teamC": {
+            "home": {
+                "title": "TeamCS",
+                "createLabel": "Créer un nouveau Team C",
+                "createOrEditLabel": "Créer ou éditer un Team C"
+            },
+            "created": "Un nouveau Team C a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Team C avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Team C avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Team C {{ id }} ?"
+            },
+            "detail": {
+                "title": "Team C"
+            },
+            "name": "Name",
+            "playerC": "Player C",
+            "match": "Match"
+        }
+    }
+}

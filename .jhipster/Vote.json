@@ -1,0 +1,32 @@
+{
+    "name": "Vote",
+    "fields": [
+        {
+            "fieldName": "note",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "match",
+            "otherEntityName": "match",
+            "otherEntityField": "date"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "voter",
+            "otherEntityName": "player",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181130203122",
+    "entityTableName": "vote",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

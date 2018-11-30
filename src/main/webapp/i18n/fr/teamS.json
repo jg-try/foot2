@@ -1,0 +1,23 @@
+{
+    "footApp": {
+        "teamS": {
+            "home": {
+                "title": "TeamS",
+                "createLabel": "Créer un nouveau Team S",
+                "createOrEditLabel": "Créer ou éditer un Team S"
+            },
+            "created": "Un nouveau Team S a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Team S avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Team S avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Team S {{ id }} ?"
+            },
+            "detail": {
+                "title": "Team S"
+            },
+            "name": "Name",
+            "playerS": "Player S",
+            "match": "Match"
+        }
+    }
+}

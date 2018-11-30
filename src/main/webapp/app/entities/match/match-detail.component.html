@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="match">
+            <h2><span jhiTranslate="footApp.match.detail.title">Match</span> {{match.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="footApp.match.date">Date</span></dt>
+                <dd>
+                    <span>{{match.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="footApp.match.scoreC">Score C</span></dt>
+                <dd>
+                    <span>{{match.scoreC}}</span>
+                </dd>
+                <dt><span jhiTranslate="footApp.match.scoreS">Score S</span></dt>
+                <dd>
+                    <span>{{match.scoreS}}</span>
+                </dd>
+                <dt><span jhiTranslate="footApp.match.teamC">Team C</span></dt>
+                <dd>
+                    <div *ngIf="match.teamC">
+                        <a [routerLink]="['/team-c', match.teamC?.id, 'view']">{{match.teamC?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="footApp.match.teamS">Team S</span></dt>
+                <dd>
+                    <div *ngIf="match.teamS">
+                        <a [routerLink]="['/team-s', match.teamS?.id, 'view']">{{match.teamS?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="footApp.match.stadium">Stadium</span></dt>
+                <dd>
+                    <div *ngIf="match.stadium">
+                        <a [routerLink]="['/stadium', match.stadium?.id, 'view']">{{match.stadium?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="footApp.match.mvpC">Mvp C</span></dt>
+                <dd>
+                    <div *ngIf="match.mvpC">
+                        <a [routerLink]="['/player', match.mvpC?.id, 'view']">{{match.mvpC?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="footApp.match.mvpS">Mvp S</span></dt>
+                <dd>
+                    <div *ngIf="match.mvpS">
+                        <a [routerLink]="['/player', match.mvpS?.id, 'view']">{{match.mvpS?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/match', match.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
