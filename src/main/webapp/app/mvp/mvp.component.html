@@ -1,0 +1,22 @@
+<h3>Liste des matchs:</h3>
+<div>
+  <!-- routerLink="/vote/{{match.id}}"-->
+  <a *ngFor="let match of matches" (click)="getPlayers(match.id)">
+    <div>
+      <h4>{{match.id}}: </h4>
+    </div>
+    <div>
+      <h4>{{match.date}}</h4>
+    </div>
+  </a>
+</div>
+
+<h3>Liste des joueurs:</h3>
+<h4>{{players}}</h4>
+<div>
+  <h4 *ngFor="let player of players">
+    <div>
+      <h4>{{player.id}}: {{player.name}}</h4>
+    </div>
+  </h4>
+</div>
