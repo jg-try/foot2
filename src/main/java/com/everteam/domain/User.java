@@ -34,6 +34,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
+    
+    @Column(name = "player_id")
+    private Long playerId;
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -108,7 +111,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.id = id;
     }
 
-    public String getLogin() {
+    public Long getPlayerId() {
+		return playerId;
+	}
+
+	public void setPlayerId(Long playerId) {
+		this.playerId = playerId;
+	}
+
+	public String getLogin() {
         return login;
     }
 

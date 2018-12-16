@@ -13,6 +13,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="userManagement.playerId">Player Id</label>
+                    <input type="text" class="form-control" name="playerId" #playerIdInput="ngModel"
+                        [(ngModel)]="user.playerId">
+                </div>
+
+                
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="userManagement.login">Login</label>
                     <input type="text" class="form-control" name="login" #loginInput="ngModel"
                         [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">

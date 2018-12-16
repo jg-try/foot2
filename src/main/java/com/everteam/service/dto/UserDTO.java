@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 public class UserDTO {
 
     private Long id;
+    
+    private Long playerId;
 
     @NotBlank
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -59,6 +61,7 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this.id = user.getId();
+        this.playerId = user.getPlayerId();
         this.login = user.getLogin();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -82,8 +85,16 @@ public class UserDTO {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public Long getPlayerId() {
+		return playerId;
+	}
 
-    public String getLogin() {
+	public void setPlayerId(Long playerId) {
+		this.playerId = playerId;
+	}
+
+	public String getLogin() {
         return login;
     }
 
