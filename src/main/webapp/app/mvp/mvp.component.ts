@@ -22,6 +22,8 @@ export class MvpComponent implements OnInit {
     reverse: any;
     totalItems: number;
 
+    allRatings: Map<number, number>;
+
     constructor(
         private matchService: MatchService,
         private mvpService: MvpService,
@@ -30,6 +32,7 @@ export class MvpComponent implements OnInit {
     ) {
         this.matches = [];
         this.players = [];
+        this.allRatings = new Map<number, number>();
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 0;
         this.links = {
@@ -43,12 +46,31 @@ export class MvpComponent implements OnInit {
         this.loadAll();
     }
 
+    ratingComponentClick(clickObj: any): void {
+        const player = this.players.find((i: any) => i.id === clickObj.playerId);
+        if (!!player) {
+            if (this.allRatings.has(player.id)) {
+                this.allRatings.delete(player.id);
+            }
+            this.allRatings.set(player.id, clickObj.rating);
+        }
+    }
+
+    validateRating() {
+        console.log(this.allRatings);
+    }
+
     cleanPlayers() {
         this.players = [];
     }
 
+    cleanRatings() {
+        this.allRatings.clear();
+    }
+
     getPlayers(matchId: number) {
         this.cleanPlayers();
+        this.cleanRatings();
         this.mvpService.getPlayers(matchId).subscribe(
             (res: HttpResponse<IPlayer[]>) => {
                 for (let i = 0; i < res.body.length; i++) {

@@ -20,6 +20,7 @@ import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 import { MvpComponent } from './mvp/mvp.component';
+import { RatingComponent } from './mvp/rating/rating.component';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import { MvpComponent } from './mvp/mvp.component';
         PageRibbonComponent,
         ActiveMenuDirective,
         FooterComponent,
-        MvpComponent
+        MvpComponent,
+        RatingComponent
     ],
     providers: [
         {
